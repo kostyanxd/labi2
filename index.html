@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>QuickSort Visualization</title>
+    <style>
+      
+      .array {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+      }
+      .array-element {
+        display: inline-block;
+        background-color: #ccc;
+        padding: 5px;
+        margin: 5px;
+        border-radius: 5px;
+        text-align: center;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+      }
+      .array-element.red {
+        background-color: #f00;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <label for="input">Enter array:</label>
+      <input type="text" id="input">
+      <button onclick="sort()">Sort</button>
+    </div>
+    <div id="output"></div>
+    <script>
+      function sort() {
+        let arr = document.getElementById("input").value.split(",").map(x => parseInt(x));
+        quickSort(arr, 0, arr.length - 1);
+      }
+      
+      function quickSort(arr, low, high) {
+        if (low < high) {
+          let pivotIndex = partition(arr, low, high);
+          displayArray(arr, pivotIndex);
+          quickSort(arr, low, pivotIndex - 1);
+          quickSort(arr, pivotIndex + 1, high);
+        }
+      }
+      
+      function partition(arr, low, high) {
+        let pivot = arr[high];
+        let i = low - 1;
+        for (let j = low; j <= high - 1; j++) {
+          if (arr[j] < pivot) {
+            i++;
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+          }
+        }
+        [arr[i + 1], arr[high]] = [arr[high], arr[i + 1]];
+        return i + 1;
+      }
+      
+      function displayArray(arr, pivotIndex) {
+        let output = document.getElementById("output");
+        let div = document.createElement("div");
+        div.className = "array";
+        for (let i = 0; i < arr.length; i++) {
+          let element = document.createElement("div");
+          element.className = "array-element";
+          if (i === pivotIndex) {
+            element.className += " red";
+          }
+          element.textContent = arr[i];
+          div.appendChild(element);
+        }
+        output.appendChild(div);
+      }
+    </script>
+  </body>
+</html>
