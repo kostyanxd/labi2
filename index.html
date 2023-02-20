@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <title>QuickSort Visualization</title>
     <style>
+
       body {
         font-family: Arial, sans-serif;
         font-size: 20px;
         background-color: #FBF5EF;
       }
+
   .array {
     display: flex;
     flex-wrap: wrap;
@@ -29,7 +31,7 @@
     background-color: #f00;
     color: #fff;
   }
- 
+  
   button {
     background-color: #4CAF50;
     color: white;
@@ -50,16 +52,30 @@
       margin-top: 20px;
       border-radius: 5px;
       border: 1px solid gray;
-  }
+}
+#bombom {
+align-items: center;
+  
+}
+#gh {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  margin-left: 35%;
+}
 </style>
   </head>
   <body>
-    <div>
+    <div id='gh'> 
+    <div id='bombom'>
       <label for="input">Enter array:</label>
-      <input type="text" id="input">
+      <input type="text" id="input" placeholder="Comma-separated array">
       <button onclick="sort()">Sort</button>
     </div>
+    </div>
+    
     <div id="output"></div>
+    </div>
     <script>
       function sort() {
         let arr = document.getElementById("input").value.split(",").map(x => parseInt(x));
@@ -103,6 +119,7 @@
         }
         output.appendChild(div);
       }
+      
     </script>
   </body>
 </html>
